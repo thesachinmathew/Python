@@ -7,16 +7,16 @@ print(res)
 
 #find 1st monday of next month by given date
 from datetime import datetime, timedelta
-def first_monday_next_month(date_str):
-    date = datetime.strptime(date_str, '%Y-%m-%d')
-    next_month = date.month % 12 + 1
-    next_year = date.year + (date.month // 12)
-    first_day_next_month = datetime(next_year, next_month, 1)
-    days_to_monday = (7 - first_day_next_month.weekday() + 0) % 7
-    first_monday = first_day_next_month + timedelta(days=days_to_monday)
-    return first_monday.strftime('%Y-%m-%d')
+def frst(da):
+    date = datetime.strptime(da, '%Y-%m-%d')
+    nxtm = date.month % 12 + 1
+    nxty = date.year + (date.month // 12)
+    nxt = datetime(nxty, nxtm, 1)
+    dtm = (7 - nxt.weekday() + 0) % 7
+    fm = nxt + timedelta(days=dtm)
+    return fm.strftime('%Y-%m-%d')
 date_str = '2024-08-05'  
-print(first_monday_next_month(date_str))
+print(frst(da))
 
 #mean,median.mode
 from statistics import mean, median, mode
@@ -44,7 +44,9 @@ day_index= calendar.weekday(year, month, day)
 day_name= calendar.day_name[day_index]
 print(day_name)
 
-
-
+#min and max
+a,b,c=2,5,7
+print(max(a,b,c))
+print(min(a,b,c))
 
 
