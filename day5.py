@@ -39,28 +39,28 @@ n=16
 print(sqrt(n)*sqrt(n)==n)
 
 #smith number
-def is_smith_number(n):
+def smth(n):
     s = lambda x: sum(int(d) for d in str(x))
-    f, d, factors = n, 2, []
+    f, d, fa = n, 2, []
     while d * d <= f:
         while f % d == 0:
-            factors.append(d)
+            fa.append(d)
             f //= d
         d += 1
-    if f > 1: factors.append(f)
-    return len(factors) > 1 and s(n) == sum(map(s, factors))
-number = 666
-print(is_smith_number(number)) 
+    if f > 1: fa.append(f)
+    return len(fctors) > 1 and s(n) == sum(map(s, fa))
+num = 666
+print(smth(num)) 
 
 #strong number
 import math
-def is_strong_number(n):
+def strg(n):
   return n== sum(math.factorial(int(digit))for digit in str(n))
   n=145
-  print(is_strong_number(n))
+  print(strg(n))
 
 #sum of digits in until single
 n=9865
 while n>9:
-  n=sum(int(digit) fot digit in str(n))
+  n=sum(int(digit) for digit in str(n))
   print(n)
