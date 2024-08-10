@@ -11,14 +11,12 @@ w=s.split()
 print("Length of last word is",len(w[-1])
 
 #composite num
-s=1
-e=20
-for num in range(s, e + 1):
-    if num > 1:
-      for i in range(2, int(num**0.5) + 1):
-            if num % i == 0:
-                print(num,end=" ")
-            break
+a=10
+b=30
+c=0
+for n in range(a,b):
+    if(n%2==0 and n!=2 or n%3==0 and n!=3 or n%5==0 and n!=5 or n==1):
+        print(n)
 
 #sqr,cube,sqrt
 import math
@@ -50,14 +48,14 @@ is_palindrome= str(n)==str(n)[::-1]
 print("palindrome" if is_palindrome else "not an palindrome")
 
 #prime btw 2 nums
-st, end= 10,20
-for i in range(st, end+1):
-    fl=True
-    for j in range(2, i//2+1):
-        if i % j==0:
-            break
-        else:
-            print(i)
+a=10
+b=30
+c=0
+for n in range(a,b):
+    if(n%2==0 and n!=2 or n%3==0 and n!=3 or n%5==0 and n!=5 or n==1):
+        c=1
+    else:
+        print(n)
 
 #sum od series
 num = 5
