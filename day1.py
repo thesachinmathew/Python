@@ -43,11 +43,11 @@ if l%2==0:
     print("Tech no")
 
 #7 prime or composite
-n=4
-if(n%2==0 and n%3==0 and n%5==0):
-  print("It is prime")
-else:
+n=7
+if(n%2==0 and n!=2 or n%3==0 and n!=3 or n%5==0 and n!=5):
   print("It is not prime")
+else:
+  print("It is prime")
 
 #8 alpha unicode
 for char in range(ord('a'),ord('z')+1):
