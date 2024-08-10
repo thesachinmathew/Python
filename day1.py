@@ -44,7 +44,7 @@ if l%2==0:
 
 #7 prime or composite
 n=7
-if(n%2==0 and n!=2 or n%3==0 and n!=3 or n%5==0 and n!=5):
+if(n%2==0 and n!=2 or n%3==0 and n!=3 or n%5==0 and n!=5 and n%1!=0 and n!=1):
   print("It is not prime")
 else:
   print("It is prime")
