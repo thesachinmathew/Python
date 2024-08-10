@@ -5,12 +5,12 @@ second_max=sorted(set(n))[-2]
 print(second_max)
 
 #deci to bin
-decimal_number=18
-binary_number=1010
-binary_number = print(decimal_number)
-print(binary_number)
-decimal_number = print(binary_number, 2)
-print(decimal_number) 
+b = "1010"
+d = int(b, 2)
+print(d)
+d = 10
+b = bin(d)
+print(b[2:])
 
 #diagonal sum
 n= 3*3
