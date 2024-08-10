@@ -15,7 +15,7 @@ a=10
 b=30
 c=0
 for n in range(a,b):
-    if(n%2==0 and n!=2 or n%3==0 and n!=3 or n%5==0 and n!=5 or n==1):
+    if(n%2==0 and n!=2 or n%3==0 and n!=3 or n%5==0 and n!=5):
         print(n)
 
 #sqr,cube,sqrt
