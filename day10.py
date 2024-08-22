@@ -1,18 +1,18 @@
 #find the freq of each character of a string and replace each character by the aplhabet which is at distance = freq from the character
-def replace_by_distance(s: str) -> str:
-    frequency = {}
+def rep(s: str) -> str:
+    f = {}
     for ch in s:
-        if ch in frequency:
-            frequency[ch] += 1
+        if ch in f:
+            f[ch] += 1
         else:
-            frequency[ch] = 1
-    result = []
+            f[ch] = 1
+    res = []
     for ch in s:
-        freq = frequency[ch]
-        new_char = chr((ord(ch) - ord('a') + freq) % 26 + ord('a'))
-        result.append(new_char)
-    return ''.join(result)
+        freq = f[ch]
+        nw = chr((ord(ch) - ord('a') + freq) % 26 + ord('a'))
+        res.append(nw)
+    return ''.join(res)
 if __name__ == "__main__":
-    input_string = input("Enter the string: ")
-    output_string = replace_by_distance(input_string)
-    print("Resulting string:", output_string)
+    inn = input("Enter the string: ")
+    op = rep(inn)
+    print("Resulting string:", op)
