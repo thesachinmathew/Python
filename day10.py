@@ -19,5 +19,7 @@ if __name__ == "__main__":
     month = int(input())
     we, mon = a(year, month)
     print(f"Number of weekdays: {we}\nDate of the first Monday: {mon.strftime('%Y-%m-%d')}")
-#get string input replace with caps symbol if a character is vowels and add 2 after character if not vowel 
-print(''.join('^' if c in 'aeiouAEIOU' else c + '@' for c in input()))
+#get string input add ^ if a character is vowels and add @ after character if not vowel 
+print(''.join(c + '^' if c in 'aeiouAEIOU' else c + '@' for c in input()))
+
+
