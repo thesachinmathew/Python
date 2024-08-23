@@ -8,20 +8,21 @@ if __name__ == "__main__":
     print("Resulting string:", rep(input("Enter the string: ")))
 
 #number of weekdays and date of first monday in a given month and yearimport calendar
-import calender
+import calendar
 from datetime import datetime
 m, y = 8, 2024
 cal = calendar.Calendar()
-wee = [0] * 7
-mon = None
+wee = [0] * 7 
+mon = None 
 for day, wd in cal.itermonthdays2(y, m):
     if day:
         wee[wd] += 1
-        if wd == 0 and mon is None:
-            mon = datetime(y, m, day)
+        if wd == 0 and mon is None:  
+            mon = datetime(y, m, day)  
 tow = sum(wee[:5]) 
 print(f"Total number of weekdays: {tow}")
 print(f"Date of the first Monday: {mon.strftime('%Y-%m-%d') if mon else 'None'}")
+
 
 
 #get string input add ^ if a character is vowels and add @ after character if not vowel 
