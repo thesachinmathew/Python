@@ -36,26 +36,11 @@ def avg(en, le):
     return ts / len(en)
 print("Average number of students in the library:", avg(en, le))
 
-#using dictionary
-data = {
-    1: {'entering': 40, 'leaving': 20},
-    2: {'entering': 20, 'leaving': 10},
-    3: {'entering': 10, 'leaving': 20},
-    4: {'entering': 30, 'leaving': 10},
-    5: {'entering': 20, 'leaving': 15}
-}
-def average_students(data):
-    current_students = 0
-    total_students = 0
-    hours = len(data)
-    
-    for hour in range(1, hours + 1):
-        e = data[hour]['entering']
-        l = data[hour]['leaving']
-        current_students += e - l
-        total_students += current_students
-        print(f"Hour {hour}: Entering={e}, Leaving={l}, Current Students={current_students}")
-    
-    return total_students / hours
-
-print("Average number of students in the library:", average_students(data))
+#take 2 list as input, create a third list with appending first element of 1st and 2nd list so on , if length of the list are not the same the remaining elements append to be last
+n = [1, 3, 5, 7, 8]
+m = ['a', 'b', 'c', 'd', 'u', 'h', 'i']
+l = min(len(n), len(m))
+mer= [val for pair in zip(n[:l], m[:l]) for val in pair]
+rem= n[l:] + m[l:]
+print("Merged List:", mer)
+print("Remaining List:", rem)
