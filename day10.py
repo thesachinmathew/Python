@@ -7,18 +7,20 @@ def rep(s: str) -> str:
 if __name__ == "__main__":
     print("Resulting string:", rep(input("Enter the string: ")))
 
-#number of weekdays and date of first monday in a given month and year
-from datetime import datetime, timedelta
-def a(year, month):
-    fst = datetime(year, month, 1)
-    fmon = fst + timedelta(days=(7 - fst.weekday()) % 7)
-    wec = sum(1 for i in range(1, (fst.replace(day=28) + timedelta(days=4)).day + 1) if fst.replace(day=i).weekday() < 5)
-    return wec, fmon
-if __name__ == "__main__":
-    year = int(input())
-    month = int(input())                                                                                                                                                  
-    we, mon = a(year, month)
-    print(f"Number of weekdays: {we}\nDate of the first Monday: {mon.strftime('%Y-%m-%d')}")
+#number of weekdays and date of first monday in a given month and yearimport calendar
+from datetime import datetime
+m, y = 8, 2024
+cal = calendar.Calendar()
+wee = [0] * 7
+mon = None
+for day, wd in cal.itermonthdays2(y, m):
+    if day:
+        wee[wd] += 1
+        if wd == 0 and mon is None:
+            mon = datetime(y, m, day)
+tow = sum(wee[:5]) 
+print(f"Total number of weekdays: {tow}")
+print(f"Date of the first Monday: {mon.strftime('%Y-%m-%d') if mon else 'None'}")
 
 
 #get string input add ^ if a character is vowels and add @ after character if not vowel 
