@@ -8,6 +8,7 @@ if __name__ == "__main__":
     print("Resulting string:", rep(input("Enter the string: ")))
 
 #number of weekdays and date of first monday in a given month and yearimport calendar
+import calender
 from datetime import datetime
 m, y = 8, 2024
 cal = calendar.Calendar()
