@@ -1,50 +1,46 @@
-from flask import Flask, request, send_file, jsonify
-from pydub import AudioSegment
-import os
-import uuid
+import requests
 
-app = Flask(__name__)
+API_URL = "https://disease.sh/v3/covid-19"
 
-UPLOAD_FOLDER = 'uploads'
-CONVERTED_FOLDER = 'converted'
-os.makedirs(UPLOAD_FOLDER, exist_ok=True)
-os.makedirs(CONVERTED_FOLDER, exist_ok=True)
+def fetch_covid_stats(region_type, region_name):
+    try:
+        endpoint = f"{API_URL}/{region_type}/{region_name}"
+        response = requests.get(endpoint)
+        response.raise_for_status()  # Raise an HTTPError for bad responses
+        data = response.json()
+        return data
+    except requests.exceptions.HTTPError as http_err:
+        print(f"HTTP error occurred: {http_err}")
+    except Exception as err:
+        print(f"An error occurred: {err}")
+    return None
 
-# Replace this with your actual API key
-API_KEY = 'your-api-key-here'
-
-def check_api_key(key):
-    return key == API_KEY
-
-@app.route('/convert', methods=['POST'])
-def convert_audio():
-    api_key = request.headers.get('Authorization')
-    if not api_key or not check_api_key(api_key):
-        return jsonify({'error': 'Unauthorized'}), 401
-
-    if 'file' not in request.files:
-        return jsonify({'error': 'No file part'}), 400
-
-    file = request.files['file']
-    if file.filename == '':
-        return jsonify({'error': 'No selected file'}), 400
-
-    file_extension = file.filename.rsplit('.', 1)[1].lower()
-    if file_extension not in ['wav', 'mp3', 'ogg']:
-        return jsonify({'error': 'Unsupported file type'}), 400
-
-    filename = f"{uuid.uuid4()}.{file_extension}"
-    filepath = os.path.join(UPLOAD_FOLDER, filename)
-    file.save(filepath)
-
-    # Convert to a different format (e.g., MP3)
-    output_filename = f"{uuid.uuid4()}.mp3"
-    output_filepath = os.path.join(CONVERTED_FOLDER, output_filename)
+def display_stats(data):
+    if 'country' in data:
+        region = data['country']
+    elif 'state' in data:
+        region = data['state']
+    elif 'continent' in data:
+        region = data['continent']
+    else:
+        region = "Unknown region"
     
-    audio = AudioSegment.from_file(filepath)
-    audio.export(output_filepath, format="mp3")
+    print(f"\nCOVID-19 Statistics for {region}:")
+    print(f"Total Cases: {data['cases']}")
+    print(f"Total Recoveries: {data['recovered']}")
+    print(f"Total Deaths: {data['deaths']}")
 
-    return send_file(output_filepath, as_attachment=True)
+def main():
+    print("COVID-19 Statistics Tracker")
+    region_type = input("Enter region type (countries/states/continents): ").lower()
+    region_name = input(f"Enter the {region_type[:-1]} name: ").lower()
 
-if __name__ == '__main__':
-    app.run(debug=True)
+    data = fetch_covid_stats(region_type, region_name)
+    
+    if data:
+        display_stats(data)
+    else:
+        print(f"Could not retrieve data for {region_name}. Please check the region name and try again.")
+
+if __name__ == "__main__":
+    main()
